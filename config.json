@@ -1,0 +1,18 @@
+{
+	"title":"开发小工具",
+	"tabs":[
+		{
+		"title":"加解密工具",
+		"handle":"crypto"	
+		}
+		,{
+		"title":"正则小箱子",
+		"handle":"regexp"	
+		}
+		,{
+		"title":"系统工具",
+		"handle":"os"	
+		}
+	]
+	
+}
