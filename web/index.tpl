@@ -46,6 +46,7 @@ body {
 </head>
 <body>
 <div id="log"></div>
+
 <form id="form">
     <input type="submit" value="Send" />
     <input type="text" id="msg" size="64"/>
