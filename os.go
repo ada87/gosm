@@ -8,7 +8,7 @@ import (
 )
 
 func (c *Controllers) PageOs(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("os")
+	Portal(w, "os.tpl", nil)
 }
 
 func (s *Sockets) SocketOs(ws *websocket.Conn) {

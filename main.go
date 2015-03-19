@@ -117,7 +117,9 @@ func (page PageData) Partial(tpl string) string {
 //模板引擎
 func Portal(w http.ResponseWriter, tpl string, data interface{}) {
 	pd := PageData{Config, data}
-	t, err := template.ParseFiles("web/" + tpl)
+
+	w.WriteHeader(200)
+	t, err := template.ParseFiles("web/"+tpl, "web/content/head.tpl", "web/content/foot.tpl")
 	checkErr(err)
 	t.Execute(w, pd)
 }
