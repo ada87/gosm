@@ -2,17 +2,17 @@ package main
 
 import (
 	"encoding/json"
-	//	"fmt"
 	"io/ioutil"
 )
 
-type Tab struct {
+type tab struct {
 	Title  string
 	Handle string
 }
 type config struct {
 	Title string
-	Tabs  []Tab
+	Tabs  []tab
+	Port  int
 }
 
 var Config = config{}

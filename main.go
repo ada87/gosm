@@ -1,48 +1,49 @@
 package main
 
 import (
+	"bytes"
 	"code.google.com/p/go.net/websocket"
 	"fmt"
 	"html/template"
 	"net/http"
+	"os/exec"
 	"reflect"
+	"strconv"
 	"strings"
 )
 
-type Control map[string]reflect.Value
+//控制器集合
+type Controllers map[string]reflect.Value
 
-var fns = make(Control)
+//Socket处理器集合
+type Sockets map[string]reflect.Value
 
-var chttp = http.NewServeMux()
+var cs = make(Controllers)
+var ss = make(Sockets)
 
 //webSocket总路由器
 func socket(ws *websocket.Conn) {
-	//	fmt.Println(os.FileMode)
 	for {
-		Rotesocket()
 		var replay string
-		if err := websocket.Message.Receive(ws, &replay); err != nil {
-			fmt.Println("error")
-		}
-		if err := websocket.Message.Send(ws, "wocao"); err != nil {
-			fmt.Println("error")
+		var err = websocket.Message.Receive(ws, &replay)
+		checkErr(err)
+
+		rote := strings.Split(replay, " ")
+		fn, exists := ss[rote[0]]
+		if exists {
+			fn.Call([]reflect.Value{reflect.ValueOf(ws), reflect.ValueOf(rote[:1])})
+		} else {
+			fmt.Println("no socket: ", rote[0])
 		}
 	}
-
-	//	fmt.Println("request")
-
+	exec.Command("cmd")
 }
 
-func HandleIndex(w http.ResponseWriter, r *http.Request) {
-	tpl, err := template.ParseFiles("web/index.tpl")
-	checkErr(err)
-	tpl.Execute(w, nil)
-}
+//静态文件处理器
+var chttp = http.NewServeMux()
 
 //页面总路由
 func Router(w http.ResponseWriter, r *http.Request) {
-	//	fmt.Print(r.RequestURI)
-
 	if strings.Contains(r.URL.Path, ".") {
 		chttp.ServeHTTP(w, r)
 		return
@@ -52,45 +53,81 @@ func Router(w http.ResponseWriter, r *http.Request) {
 		HandleIndex(w, r)
 		return
 	}
-	fn, exists := fns[rote]
+	fn, exists := cs[rote]
 	if exists {
 		fn.Call([]reflect.Value{reflect.ValueOf(w), reflect.ValueOf(r)})
 	} else {
+		w.WriteHeader(404)
 		fmt.Println("no router:", rote)
 	}
-
 }
 
+//程序入口，绑定 页面总路由器  和 websocket总路由器
 func main() {
 	sock := websocket.Handler(socket)
 	http.HandleFunc("/", Router)
 	http.Handle("/_", sock)
 	http.Handle("/js/", http.FileServer(http.Dir("web")))
 	http.Handle("/css/", http.FileServer(http.Dir("web")))
+	http.Handle("/css-source/", http.FileServer(http.Dir("web")))
+	http.Handle("/images/", http.FileServer(http.Dir("web")))
 	http.Handle("/font/", http.FileServer(http.Dir("web")))
+
 	for _, tab := range Config.Tabs {
 		rote := tab.Handle
 		methodName := strings.ToUpper(rote[:1]) + rote[1:]
-		_, ok := reflect.TypeOf(&fns).MethodByName("Hander" + methodName)
+		//Page Handder
+		var _, ok = reflect.TypeOf(&cs).MethodByName("Page" + methodName)
 		if ok {
 			http.HandleFunc("/"+rote, Router)
-			//			http.HandleFunc("/_"+rote, sock)
-			fns[rote] = reflect.ValueOf(&fns).MethodByName("Hander" + methodName)
-		} else {
-			fmt.Println("no method :", methodName)
+			cs[rote] = reflect.ValueOf(&cs).MethodByName("Page" + methodName)
 		}
+
+		//Socket Handder
+
+		_, ok = reflect.TypeOf(&ss).MethodByName("Socket" + methodName)
+		if ok {
+			//			http.HandleFunc("/"+rote, Router)
+			ss[rote] = reflect.ValueOf(&ss).MethodByName("Socket" + methodName)
+		}
+
 	}
-	if err := http.ListenAndServe(":9999", nil); err != nil {
-		fmt.Printf("error")
-	}
+	//TODO 一个。此句话只在window系统下有效。
+	var err = exec.Command("cmd", "/c", "start", "http://localhost:"+strconv.Itoa(Config.Port)+"/").Start()
+	checkErr(err)
+	err = http.ListenAndServe(":"+strconv.Itoa(Config.Port), nil)
+	checkErr(err)
 }
 
-func init() {
-	//	os.OpenFile("")
-	//	fmt.Println(Config.Title)
-
+type PageData struct {
+	Config config
+	Data   interface{}
 }
 
+func (page PageData) Partial(tpl string) string {
+	//	fmt.Println(tpl)
+	t, err := template.ParseFiles("web/" + tpl)
+	checkErr(err)
+	var buf bytes.Buffer
+	t.Execute(&buf, page)
+	//	return t.ExecuteTemplate()
+	return buf.String()
+}
+
+//模板引擎
+func Portal(w http.ResponseWriter, tpl string, data interface{}) {
+	pd := PageData{Config, data}
+	t, err := template.ParseFiles("web/" + tpl)
+	checkErr(err)
+	t.Execute(w, pd)
+}
+
+//进入首页
+func HandleIndex(w http.ResponseWriter, r *http.Request) {
+	Portal(w, "index.tpl", nil)
+}
+
+//异常处理，暂时只做panic
 func checkErr(err error) {
 	if err != nil {
 		panic(err)

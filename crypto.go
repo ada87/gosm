@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func (c *Control) HanderCrypto(w http.ResponseWriter, r *http.Request) {
+func (c *Controllers) PageCrypto(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("crypto")
 }

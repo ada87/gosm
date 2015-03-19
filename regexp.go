@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func (c *Control) HanderRegexp(w http.ResponseWriter, r *http.Request) {
+func (c *Controllers) PageRegexp(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("HanderRegexp")
 }
