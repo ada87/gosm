@@ -30,9 +30,7 @@ func socket(ws *websocket.Conn) {
 		if err = websocket.Message.Receive(ws, &recive); err != nil {
 			break
 		}
-
 		rote := strings.Split(recive, " ")
-
 		fn, exists := ss[rote[0]]
 		if exists {
 			fn.Call([]reflect.Value{reflect.ValueOf(ws), reflect.ValueOf(rote[1:])})
