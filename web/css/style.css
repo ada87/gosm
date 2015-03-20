@@ -10965,13 +10965,30 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   content: "";
 }
 
-/* line 5, ../css-source/style.scss */
+/* line 4, ../css-source/style.scss */
+.fullScreen {
+  display: block;
+  height: 100%;
+  background-color: rgba(10, 20, 30, 0.3);
+}
+/* line 8, ../css-source/style.scss */
+.fullScreen .row {
+  height: 100%;
+  display: block;
+}
+/* line 11, ../css-source/style.scss */
+.fullScreen .row div {
+  height: 100%;
+  display: block;
+}
+
+/* line 17, ../css-source/style.scss */
 .hide {
   display: none;
 }
 
-/* line 8, ../css-source/style.scss */
-.comand {
+/* line 20, ../css-source/style.scss */
+.x-comand {
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -10980,39 +10997,70 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   padding-left: 10px;
   padding-top: 5px;
 }
-/* line 16, ../css-source/style.scss */
-.comand button {
+/* line 28, ../css-source/style.scss */
+.x-comand button {
   height: 36px;
-  line-height: 36px;
+  line-height: 24px;
   font-size: 14px;
   font-weight: bold;
+}
+
+/* line 35, ../css-source/style.scss */
+.x-menu {
+  position: fixed;
+  top: 10px;
+  left: 0px;
+}
+
+/* line 43, ../css-source/style.scss */
+.x-right {
+  background-color: #000;
+  height: 100%;
+  color: #fff;
+  text-align: left;
+  overflow-x: hide;
+  overflow-y: scroll;
+}
+/* line 50, ../css-source/style.scss */
+.x-right p {
+  padding: 1px;
+  margin: 1px;
+}
+
+/* line 55, ../css-source/style.scss */
+.dropup {
+  width: 160px;
+}
+/* line 57, ../css-source/style.scss */
+.dropup button {
+  width: 160px;
 }
 
 /*
  * Base structure
  */
-/* line 28, ../css-source/style.scss */
+/* line 65, ../css-source/style.scss */
 html,
 body {
   height: 100%;
 }
 
-/* line 32, ../css-source/style.scss */
+/* line 69, ../css-source/style.scss */
 body {
-  color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* line 38, ../css-source/style.scss */
+/* line 73, ../css-source/style.scss */
 ul li {
   list-style: none;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
-/* line 44, ../css-source/style.scss */
+/* line 79, ../css-source/style.scss */
 .index {
   display: table;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   background-color: #333;
   width: 100%;
   height: 100%;
@@ -11020,15 +11068,15 @@ ul li {
   min-height: 100%;
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
 }
-/* line 51, ../css-source/style.scss */
+/* line 88, ../css-source/style.scss */
 .index h1 {
   margin: 40px auto;
 }
-/* line 54, ../css-source/style.scss */
+/* line 91, ../css-source/style.scss */
 .index li a {
   color: #fff;
 }
-/* line 56, ../css-source/style.scss */
+/* line 93, ../css-source/style.scss */
 .index li a:hover {
   color: #cccccc;
 }

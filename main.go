@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"code.google.com/p/go.net/websocket"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -23,20 +24,25 @@ var ss = make(Sockets)
 
 //webSocket总路由器
 func socket(ws *websocket.Conn) {
+	var err error
 	for {
-		var replay string
-		var err = websocket.Message.Receive(ws, &replay)
-		checkErr(err)
+		var recive string
+		if err = websocket.Message.Receive(ws, &recive); err != nil {
+			break
+		}
 
-		rote := strings.Split(replay, " ")
+		rote := strings.Split(recive, " ")
+
 		fn, exists := ss[rote[0]]
 		if exists {
-			fn.Call([]reflect.Value{reflect.ValueOf(ws), reflect.ValueOf(rote[:1])})
+			fn.Call([]reflect.Value{reflect.ValueOf(ws), reflect.ValueOf(rote[1:])})
 		} else {
 			fmt.Println("no socket: ", rote[0])
 		}
+		if err != nil {
+			break
+		}
 	}
-	exec.Command("cmd")
 }
 
 //静态文件处理器
@@ -122,6 +128,13 @@ func Portal(w http.ResponseWriter, tpl string, data interface{}) {
 	t, err := template.ParseFiles("web/"+tpl, "web/content/head.tpl", "web/content/foot.tpl")
 	checkErr(err)
 	t.Execute(w, pd)
+}
+
+//webSocket引擎
+func SocketReplay(ws *websocket.Conn, data interface{}) {
+	replay, err := json.Marshal(data)
+	checkErr(err)
+	websocket.Message.Send(ws, string(replay))
 }
 
 //进入首页
