@@ -21,4 +21,6 @@
 目前用到的有两个
 
 * code.google.com/p/go.net/websocket
+ websocket官方扩展
 * github.com/mattn/go-sqlite3
+ 嵌入式数据库sqlite3驱动，目前sqlite3唯一支持支持db/sql的驱动

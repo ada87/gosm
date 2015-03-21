@@ -2,32 +2,9 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func DbQuery(query string) {
-	db, err := sql.Open("sqlite3", "gosm")
-	checkErr(err)
-	stmt, err := db.Prepare(query)
-	checkErr(err)
-	rows, err := stmt.Query()
-	checkErr(err)
-	for rows.Next() {
-		var id int
-		var name string
-		err := rows.Scan(&id, &name)
-		checkErr(err)
-		fmt.Println(id, name)
-	}
-
-	stmt.Close()
-	db.Close()
-}
-
-//type FieldValue struct {
-//	Value string
-//}
 type Field struct {
 	Formid     string
 	Formtype   int
@@ -59,9 +36,7 @@ func init() {
 
 		key := cString(field_code)
 		_, has := Fields[key]
-
 		if has {
-			fmt.Println(cString(field_value))
 			f := Fields[key]
 			f.appendVal(cString(field_value))
 			Fields[key] = f
@@ -69,7 +44,6 @@ func init() {
 			Fields[key] = Field{cString(field_formid), field_formtype, cString(field_desc), []string{cString(field_value)}}
 		}
 	}
-	fmt.Println(Fields)
 	stmt.Close()
 	db.Close()
 }

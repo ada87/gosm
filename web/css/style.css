@@ -10969,7 +10969,7 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 .fullScreen {
   display: block;
   height: 100%;
-  background-color: rgba(10, 20, 30, 0.3);
+  overflow: hidden;
 }
 /* line 8, ../css-source/style.scss */
 .fullScreen .row {
@@ -10993,7 +10993,7 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   bottom: 0px;
   width: 100%;
   height: 45px;
-  background-color: rgba(10, 20, 30, 0.8);
+  background-color: rgba(10, 20, 30, 0.1);
   padding-left: 10px;
   padding-top: 5px;
 }
@@ -11012,7 +11012,26 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   left: 0px;
 }
 
-/* line 43, ../css-source/style.scss */
+/* line 41, ../css-source/style.scss */
+.x-left ul {
+  margin: 0;
+  padding-top: 20px;
+  text-align: right;
+}
+/* line 45, ../css-source/style.scss */
+.x-left ul li {
+  background-color: #fff;
+  border: 1px solid #666;
+  color: #666;
+  cursor: pointer;
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  margin: 5px;
+  text-align: center;
+}
+
+/* line 58, ../css-source/style.scss */
 .x-right {
   background-color: #000;
   height: 100%;
@@ -11021,17 +11040,17 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   overflow-x: hide;
   overflow-y: scroll;
 }
-/* line 50, ../css-source/style.scss */
+/* line 65, ../css-source/style.scss */
 .x-right p {
   padding: 1px;
   margin: 1px;
 }
 
-/* line 55, ../css-source/style.scss */
+/* line 70, ../css-source/style.scss */
 .dropup {
   width: 160px;
 }
-/* line 57, ../css-source/style.scss */
+/* line 72, ../css-source/style.scss */
 .dropup button {
   width: 160px;
 }
@@ -11039,24 +11058,24 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 /*
  * Base structure
  */
-/* line 65, ../css-source/style.scss */
+/* line 80, ../css-source/style.scss */
 html,
 body {
   height: 100%;
 }
 
-/* line 69, ../css-source/style.scss */
+/* line 84, ../css-source/style.scss */
 body {
   text-align: center;
 }
 
-/* line 73, ../css-source/style.scss */
+/* line 88, ../css-source/style.scss */
 ul li {
   list-style: none;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
-/* line 79, ../css-source/style.scss */
+/* line 94, ../css-source/style.scss */
 .index {
   display: table;
   color: #fff;
@@ -11068,15 +11087,118 @@ ul li {
   min-height: 100%;
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
 }
-/* line 88, ../css-source/style.scss */
+/* line 103, ../css-source/style.scss */
 .index h1 {
   margin: 40px auto;
 }
-/* line 91, ../css-source/style.scss */
+/* line 106, ../css-source/style.scss */
 .index li a {
   color: #fff;
 }
-/* line 93, ../css-source/style.scss */
+/* line 108, ../css-source/style.scss */
 .index li a:hover {
   color: #cccccc;
+}
+
+/* line 115, ../css-source/style.scss */
+ul.reg9g {
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+/* line 120, ../css-source/style.scss */
+ul.reg9g .reg3h {
+  width: 100%;
+  height: 34%;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+}
+/* line 126, ../css-source/style.scss */
+ul.reg9g .reg3h ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* line 132, ../css-source/style.scss */
+ul.reg9g .reg3h ul li {
+  width: 33%;
+  height: 100%;
+  display: block;
+  float: left;
+}
+/* line 140, ../css-source/style.scss */
+ul.reg9g .reg3h .borleft {
+  border-left: 1px solid #666;
+}
+/* line 143, ../css-source/style.scss */
+ul.reg9g .reg3h .bortop {
+  border-top: 1px solid #666;
+}
+/* line 147, ../css-source/style.scss */
+ul.reg9g .reg3h .borright {
+  border-right: 1px solid #666;
+}
+/* line 150, ../css-source/style.scss */
+ul.reg9g .reg3h .borbottom {
+  border-bottom: 1px solid #666;
+}
+/* line 153, ../css-source/style.scss */
+ul.reg9g .reg3h .regb1 {
+  background-color: #DEF1B5;
+}
+/* line 156, ../css-source/style.scss */
+ul.reg9g .reg3h .regb2 {
+  width: 34%;
+  background-color: #B1EBB6;
+}
+/* line 160, ../css-source/style.scss */
+ul.reg9g .reg3h .regb3 {
+  background-color: #DBB1EB;
+}
+/* line 163, ../css-source/style.scss */
+ul.reg9g .reg3h .regb4 {
+  background-color: #EEB4D3;
+}
+/* line 166, ../css-source/style.scss */
+ul.reg9g .reg3h .regb5 {
+  width: 34%;
+  background-color: #FCF3E3;
+}
+/* line 170, ../css-source/style.scss */
+ul.reg9g .reg3h .regb6 {
+  background-color: #E4DEF7;
+}
+/* line 173, ../css-source/style.scss */
+ul.reg9g .reg3h .regb7 {
+  background-color: #DEF0F7;
+}
+/* line 176, ../css-source/style.scss */
+ul.reg9g .reg3h .regb8 {
+  width: 34%;
+  background-color: #FCE4E3;
+}
+/* line 180, ../css-source/style.scss */
+ul.reg9g .reg3h .regb9 {
+  background-color: #DEE6F7;
+}
+
+/* line 188, ../css-source/style.scss */
+.crypto {
+  box-shadow: inset 0 0 100px rgba(70, 130, 170, 0.2);
+  background-color: #E2EFF7;
+}
+/* line 192, ../css-source/style.scss */
+.crypto .head {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(70, 130, 170, 0.2);
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #5C87B2;
+  font-size: 18px;
+  border-bottom: 1px solid #355482;
 }

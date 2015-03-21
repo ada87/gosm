@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"os/exec"
 	"os/user"
 	"runtime"
 	"strconv"
@@ -19,8 +20,19 @@ func (s *Sockets) SocketOs(ws *websocket.Conn, cmd []string) {
 	SocketReplay(ws, rst)
 }
 
-//计算机情报
-//环境变量
+var allow = []string{"cmd", "winver", "write", "notepad", "calc", "mspaint", "mstsc", "devmgmt.msc", "services.msc", "taskmgr", "regedit", "compmgmt.msc", "fsmgmt.msc", "msconfig"}
+
+func contain(str string, list []string) bool {
+	for _, item := range list {
+		if str == item {
+			return true
+		}
+	}
+	return false
+}
+
+//
+//环境变量计算机情报
 //网络信息
 //用户信息
 func HandleResult(cmd []string) map[string]string {
@@ -39,7 +51,7 @@ func HandleResult(cmd []string) map[string]string {
 		//		fmt.Println(runtime.Version())
 		//		fmt.Println(runtime.NumCPU())
 
-		rtn["CpuNum"] = strconv.Itoa(runtime.NumCPU())
+		rtn["CPU核心数"] = strconv.Itoa(runtime.NumCPU())
 		//		cmd := exec.Command("cmd", "/c", "tasklist")
 		//		buf, err := cmd.Output()
 		//		cmd.Run()
@@ -72,7 +84,11 @@ func HandleResult(cmd []string) map[string]string {
 		rtn["UserName"] = us.Username
 		rtn["HomeDir"] = us.HomeDir
 	default:
-		rtn["tips"] = "Usage: env, detail, net, user"
+		if contain(cmd[0], allow) {
+			exec.Command("cmd", "/c", cmd[0]).Run()
+		} else {
+			rtn["tips"] = "Usage: env, detail, net, user"
+		}
 	}
 	return rtn
 }

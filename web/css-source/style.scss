@@ -4,7 +4,7 @@
 .fullScreen{
 	display:block;
 	height:100%;
-	background-color:rgba(10,20,30,0.3);
+	overflow:hidden;
 	.row{
 		height: 100%;
 		display:block;
@@ -22,7 +22,7 @@
 	bottom:0px;
 	width:100%;
 	height:45px;
-	background-color:rgba(10,20,30,0.8);
+	background-color:rgba(10,20,30,0.1);
 	padding-left:10px;
 	padding-top:5px;
 	button{
@@ -38,7 +38,22 @@
 	left:0px;
 }
 .x-left{
-
+	ul{
+		margin: 0;
+		padding-top:20px;
+		text-align: right;
+		li{
+		  	background-color: #fff;
+		    border: 1px solid #666;
+		    color: #666;
+		    cursor: pointer;
+		    font-size: 12px;
+		    height: 24px;
+		    line-height: 24px;
+		    margin: 5px;
+		    text-align: center;
+		}
+	}
 }
 .x-right{
 	background-color:#000;
@@ -93,5 +108,101 @@ ul{
 		&:hover{
 			color: darken(#fff,20%);
 		}
+	}
+}
+
+
+ul.reg9g{
+	margin:0 auto;
+	padding:0;
+	height:100%;
+	width:100%;
+	.reg3h{
+		width: 100%;
+		height: 34%;
+		overflow: hidden;
+		display: block;
+		margin: 0;
+		ul{
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			li{
+				width: 33%;
+				height: 100%;
+				display: block;
+				float: left;
+			}
+			
+		}
+		.borleft{
+			border-left:1px solid #666;
+		}
+		.bortop{
+			border-top:1px solid #666;
+		}
+
+		.borright{
+			border-right:1px solid #666;
+		}
+		.borbottom{
+			border-bottom:1px solid #666;
+		}
+		.regb1{
+			background-color:#DEF1B5;
+		}
+		.regb2{
+			width: 34%;
+			background-color:#B1EBB6;
+		}
+		.regb3{
+			background-color:#DBB1EB;
+		}
+		.regb4{
+			background-color:#EEB4D3;
+		}
+		.regb5{
+			width: 34%;
+			background-color:#FCF3E3;
+		}
+		.regb6{
+			background-color:#E4DEF7;
+		}
+		.regb7{
+			background-color:#DEF0F7;
+		}
+		.regb8{
+			width: 34%;
+			background-color:#FCE4E3;
+		}
+		.regb9{
+			background-color:#DEE6F7;
+		}
+
+	}
+}
+
+
+.crypto{
+	box-shadow: inset 0 0 100px rgba(70,130,170,0.2);
+	background-color:#E2EFF7;
+
+	.head{
+		color:#ffffff;
+  		text-shadow: 0 1px 3px rgba(70,130,170,0.2);
+  		height: 40px;
+  		line-height: 40px;
+  		text-align: center;
+		background-color:#5C87B2;
+		font-size: 18px;
+		border-bottom:1px solid #355482;
+	}
+	.input{
+
+	}
+	.output{
+
 	}
 }

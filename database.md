@@ -27,5 +27,6 @@
 |field_id|INTEGER|&nbsp;|**[非空外键]**所属字段ID|
 |field_value|TEXT|&nbsp;|字段的值|
 |status|INTEGER|2|0:默认 1:扩展 2:自定义|
+|value_desc|TEXT|&nbsp;|值描述|
 
 
