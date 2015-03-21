@@ -4,8 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
-	"reflect"
-	"strconv"
 )
 
 func DbQuery(query string) {
@@ -37,6 +35,10 @@ type Field struct {
 	Values     []string
 }
 
+func (f *Field) appendVal(val string) {
+	f.Values = append(f.Values, val)
+}
+
 var Fields = make(map[string]Field)
 
 func init() {
@@ -50,43 +52,48 @@ func init() {
 	rows, err := stmt.Query()
 	checkErr(err)
 	for rows.Next() {
-		var field_code, field_formid, field_desc, field_value interface{}
+		var field_code, field_formid, field_desc, field_value sql.NullString
 		var field_formtype int
 		rows.Scan(&field_code, &field_formid, &field_formtype, &field_desc, &field_value)
 		//		checkErr(err)
 
-		key := asString(field_code)
+		key := cString(field_code)
 		_, has := Fields[key]
 
 		if has {
-			//			Fields[key].Values = append(Fields[key].Values, asString(field_value))
+			fmt.Println(cString(field_value))
+			f := Fields[key]
+			f.appendVal(cString(field_value))
+			Fields[key] = f
 		} else {
-			Fields[key] = Field{asString(field_formid), field_formtype, asString(field_desc), []string{asString(field_value)}}
+			Fields[key] = Field{cString(field_formid), field_formtype, cString(field_desc), []string{cString(field_value)}}
 		}
 	}
 	fmt.Println(Fields)
 	stmt.Close()
 	db.Close()
 }
-func asString(src interface{}) string {
-	switch v := src.(type) {
-	case string:
-		return v
-	case []byte:
-		return string(v)
+
+func cString(str sql.NullString) string {
+	if str.Valid {
+		return str.String
+	} else {
+		return ""
 	}
-	rv := reflect.ValueOf(src)
-	switch rv.Kind() {
-	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-		return strconv.FormatInt(rv.Int(), 10)
-	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-		return strconv.FormatUint(rv.Uint(), 10)
-	case reflect.Float64:
-		return strconv.FormatFloat(rv.Float(), 'g', -1, 64)
-	case reflect.Float32:
-		return strconv.FormatFloat(rv.Float(), 'g', -1, 32)
-	case reflect.Bool:
-		return strconv.FormatBool(rv.Bool())
+}
+
+func cInt(it sql.NullInt64) int {
+	if it.Valid {
+		return int(it.Int64)
+	} else {
+		return 0
 	}
-	return fmt.Sprintf("%v", src)
+}
+
+func cFloat(fl sql.NullFloat64) float64 {
+	if fl.Valid {
+		return fl.Float64
+	} else {
+		return 0.0
+	}
 }
