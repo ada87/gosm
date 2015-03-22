@@ -1,4 +1,3 @@
-
 {{ template "head" .}}
 <div class="fullScreen">
 	请求方法

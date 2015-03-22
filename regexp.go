@@ -5,5 +5,5 @@ import (
 )
 
 func (c *Controllers) PageRegexp(w http.ResponseWriter, r *http.Request) {
-	Portal(w, "regexp.tpl", nil)
+	Portal(w, "regexp.tpl", Fields)
 }

@@ -5,47 +5,50 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-type Field struct {
-	Formid     string
-	Formtype   int
+type fieldValue struct {
+	Value string
+	Desc  string
+}
+type field struct {
 	Field_desc string
-	Values     []string
+	Values     []fieldValue
 }
 
-func (f *Field) appendVal(val string) {
-	f.Values = append(f.Values, val)
+func (f *field) appendVal(val, desc string) {
+	f.Values = append(f.Values, fieldValue{val, desc})
 }
 
-var Fields = make(map[string]Field)
+var Fields = make(map[string]field)
 
 func init() {
 	db, err := sql.Open("sqlite3", "gosm-field")
 	checkErr(err)
 	defer db.Close()
 
-	stmt, err := db.Prepare("SELECT f.field_code,f.field_formid,f.field_formtype,f.field_desc,v.field_value FROM Field AS f LEFT JOIN  Field_Value AS v ")
+	stmt, err := db.Prepare("SELECT f.field_code,f.field_desc,v.field_value,v.value_desc FROM Field AS f LEFT JOIN  Field_Value AS v  ON f.field_id = v.field_id")
 	checkErr(err)
 	defer stmt.Close()
+
 	rows, err := stmt.Query()
 	checkErr(err)
 	for rows.Next() {
-		var field_code, field_formid, field_desc, field_value sql.NullString
-		var field_formtype int
-		rows.Scan(&field_code, &field_formid, &field_formtype, &field_desc, &field_value)
+		var field_code, field_desc, field_value, value_desc sql.NullString
+		rows.Scan(&field_code, &field_desc, &field_value, &value_desc)
 		//		checkErr(err)
 
 		key := cString(field_code)
-		_, has := Fields[key]
+		f, has := Fields[key]
 		if has {
-			f := Fields[key]
-			f.appendVal(cString(field_value))
+			f.appendVal(cString(field_value), cString(value_desc))
 			Fields[key] = f
 		} else {
-			Fields[key] = Field{cString(field_formid), field_formtype, cString(field_desc), []string{cString(field_value)}}
+			if field_value.Valid {
+				Fields[key] = field{cString(field_desc), []fieldValue{fieldValue{cString(field_value), cString(value_desc)}}}
+			} else {
+				Fields[key] = field{cString(field_desc), []fieldValue{}}
+			}
 		}
 	}
-	stmt.Close()
-	db.Close()
 }
 
 func cString(str sql.NullString) string {

@@ -1,6 +1,23 @@
 @import "bootstrap";
 @import "buttons/buttons";
-@import "fontAwesome/font-awesome";
+
+ //   ___    __.  , _ , _   , _ , _     __.  , __  
+ // .'   ` .'   \ |' `|' `. |' `|' `. .'   \ |'  `.
+ // |      |    | |   |   | |   |   | |    | |    |
+ //  `._.'  `._.' /   '   / /   '   /  `._.' /    |
+html,
+body {
+  height: 100%;
+}
+body {
+  text-align: center;
+  font-family: "Microsoft YaHei","STXihei";
+}
+ul{
+	li{
+		list-style: none;
+	}
+}
 .fullScreen{
 	display:block;
 	height:100%;
@@ -30,6 +47,18 @@
 		line-height: 24px;
 		font-size: 14px;
 		font-weight: bold;
+	}
+}
+.x-comand-min{
+	width:200px;
+	.form-group{
+		display: block;
+	}
+	.input-group{
+		display: none;
+	}
+	#x-exec{
+		display: none;
 	}
 }
 .x-menu{
@@ -77,18 +106,6 @@
  * Base structure
  */
 
-html,
-body {
-  height: 100%;
-}
-body {
-  text-align: center;
-}
-ul{
-	li{
-		list-style: none;
-	}
-}
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .index {
@@ -111,8 +128,14 @@ ul{
 	}
 }
 
-
+ // .___                                   
+ // /   \   ___    ___.   ___  _  .- \,___,
+ // |__-' .'   ` .'   ` .'   `  \,'  |    \
+ // |  \  |----' |    | |----'  /\   |    |
+ // /   \ `.___,  `---| `.___, /  \  |`---'
+ //               \___/              \     
 ul.reg9g{
+	transition:right 1s;
 	margin:0 auto;
 	padding:0;
 	height:100%;
@@ -151,40 +174,59 @@ ul.reg9g{
 			border-bottom:1px solid #666;
 		}
 		.regb1{
-			background-color:#DEF1B5;
+			background-color:#FF6C52;
 		}
 		.regb2{
 			width: 34%;
-			background-color:#B1EBB6;
+			background-color:#F0F598;
 		}
 		.regb3{
-			background-color:#DBB1EB;
+			background-color:#63D6D6;
 		}
 		.regb4{
-			background-color:#EEB4D3;
+			background-color:#41E887;
 		}
 		.regb5{
 			width: 34%;
 			background-color:#FCF3E3;
 		}
 		.regb6{
-			background-color:#E4DEF7;
+			background-color:#FA5CFF;
 		}
 		.regb7{
-			background-color:#DEF0F7;
+			background-color:#4BA8DE;
 		}
 		.regb8{
 			width: 34%;
-			background-color:#FCE4E3;
+			background-color:#71BF2C;
 		}
 		.regb9{
-			background-color:#DEE6F7;
+			background-color:#B56B2A;
 		}
 
 	}
+	li.item{
+		h2{
+			margin: 0;
+			padding:0;
+		}
+	}
+}
+ul.toleft{
+	position: absolute;
+    right: 100%;
+}
+.editpanel{
+	width:100%;
+	height:100%;
+	background-color:yellow;
 }
 
-
+ //   ___  .___  ,    .  \,___, .___    __. 
+ // .'   ` /   \ |    `  |    \ /   \ .'   \
+ // |      |   ' |    |  |    | |   ' |    |
+ //  `._.' /      `---|. |`---' /      `._.'
+ //               \___/  \                  
 .crypto{
 	box-shadow: inset 0 0 100px rgba(70,130,170,0.2);
 	background-color:#E2EFF7;
@@ -200,9 +242,54 @@ ul.reg9g{
 		border-bottom:1px solid #355482;
 	}
 	.input{
+		.row{
+			margin: 5px 0;
+			.col-xs-6{
+				cursor:pointer;
+				padding: 5px 0;
+				background-color: #b0cbe7;
+    			border: 1px solid #547c80;
+			}
+			.col-xs-2{
+				cursor:pointer;
+				padding: 5px 0;
+				background-color: #b0cbe7;
+    			border: 1px solid #547c80;
+			}
+		}
+		.rowtype{
+			.selected{
+				cursor:auto;
+				border: 1px solid #000;
+				background-color:#6B4D29;
+				color: #ffffff;
+			}
+		}
+		.rowmethod{
+			.selected{
+				cursor:auto;
+				border: 1px solid #000;
+				background-color:#6B4D29;
+				color: #ffffff;
+			}
 
+		}
+		#strencode{
+			border: 1px solid #992044;
+		    margin: 30px auto;
+		    text-align: center;
+		    width: 60%;
+		}
 	}
 	.output{
-
+		width: 70%;
+		margin: 0 auto;
+		min-height: 100px;
+		background-color:#9999CC;
+		border:1px solid #677780;
+		line-height: 50px;
+		color: #BA1342;
+		font-size: 18px;
+		word-wrap:break-word;
 	}
 }
