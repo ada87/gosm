@@ -10,7 +10,17 @@ define([],function(){
 	}
 	function sendMessage(cmd){
 		if(receive!=null){
-	    	socket.send(path + ' ' + cmd);
+			var data = {
+				path:path
+			}
+			if(typeof cmd == 'string'){
+				data.cmd = cmd;
+			}else{
+				for( i in cmd){
+					data[i] = cmd[i];
+				}
+			}
+	    	socket.send(JSON.stringify(data));
 		}else{
 			alert('not vaild');
 		}

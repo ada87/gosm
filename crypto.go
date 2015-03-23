@@ -2,12 +2,16 @@ package main
 
 import (
 	"code.google.com/p/go.net/websocket"
+	"crypto/aes"
+	"crypto/cipher"
 	"crypto/md5"
+	"crypto/rand"
 	"crypto/sha1"
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/base64"
 	"encoding/hex"
+	"io"
 	"net/url"
 	//	"fmt"
 	"net/http"
@@ -17,6 +21,7 @@ import (
 
 type Encryption struct {
 	code string
+	key  string
 }
 
 //MD5加密
@@ -97,29 +102,87 @@ func (e *Encryption) Decodesha512() string {
 	return "不好意思，无法破解"
 }
 
+//aes 加密
+func (e *Encryption) Encodeaes() string {
+	src := []byte(e.code)
+	if len(src)%aes.BlockSize != 0 {
+		return "无法加密此字符串"
+	}
+	block, err := aes.NewCipher([]byte(e.key))
+	if err != nil {
+		return "密钥错误"
+	}
+	rtn := make([]byte, aes.BlockSize+len(src))
+	iv := rtn[:aes.BlockSize]
+	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+		return "无法加密"
+	}
+	mode := cipher.NewCBCDecrypter(block, iv)
+	mode.CryptBlocks(rtn[aes.BlockSize:], src)
+	return hex.EncodeToString(rtn)
+}
+
+//aes 解密
+func (e *Encryption) Decodeaes() string {
+	decodeTxt, err := hex.DecodeString(e.code)
+	if err != nil {
+		return "解码失败"
+	}
+	if len(decodeTxt) < aes.BlockSize {
+		return "无法解密此字符串"
+	}
+
+	block, err := aes.NewCipher([]byte(e.key))
+	if err != nil {
+		return "密钥错误"
+	}
+	iv := decodeTxt[:aes.BlockSize]
+	decodeTxt = decodeTxt[aes.BlockSize:]
+
+	if len(decodeTxt)%aes.BlockSize != 0 {
+		return "无法解密此字符串"
+	}
+	mode := cipher.NewCBCDecrypter(block, iv)
+	mode.CryptBlocks(decodeTxt, decodeTxt)
+	return hex.EncodeToString(decodeTxt)
+}
+
 func (c *Controllers) PageCrypto(w http.ResponseWriter, r *http.Request) {
 	Portal(w, "crypto.tpl", nil)
 }
-func (s *Sockets) SocketCrypto(ws *websocket.Conn, cmd []string) {
+func (s *Sockets) SocketCrypto(ws *websocket.Conn, data map[string]string) {
 
 	rtn := make(map[string]string)
-	if len(cmd) < 3 {
-		rtn["result"] = "错误：参数不够"
-	} else {
-		code := cmd[2]
-		for i := 3; i < len(cmd); i++ {
-			code += " " + cmd[i]
-		}
-		var ec = Encryption{code}
-		methodName := strings.ToUpper(cmd[1][:1]) + cmd[1][1:] + cmd[0]
-		var _, has = reflect.TypeOf(&ec).MethodByName(methodName)
-		if has {
-			fn := reflect.ValueOf(&ec).MethodByName(methodName)
-			val := fn.Call([]reflect.Value{})
-			rtn["result"] = val[0].String()
-		} else {
-			rtn["result"] = "错误：没有找到相应加密方法"
-		}
+
+	code, hascode := data["code"]
+	if !hascode {
+		rtn["result"] = "错误：请输入要加密的字符串"
+		SocketReplay(ws, rtn)
+		return
 	}
+	method, hasmethod := data["method"]
+	if !hasmethod {
+		method = "encode"
+	}
+	waygo, haswaygo := data["waygo"]
+	if !haswaygo {
+		waygo = "md5"
+	}
+	key, haskey := data["key"]
+	if !haskey {
+		waygo = "key"
+	}
+
+	var ec = Encryption{code, key}
+	methodName := strings.ToUpper(method[:1]) + method[1:] + waygo
+	var _, has = reflect.TypeOf(&ec).MethodByName(methodName)
+	if has {
+		fn := reflect.ValueOf(&ec).MethodByName(methodName)
+		val := fn.Call([]reflect.Value{})
+		rtn["result"] = val[0].String()
+	} else {
+		rtn["result"] = "错误：没有找到相应加密方法"
+	}
+
 	SocketReplay(ws, rtn)
 }

@@ -26,16 +26,18 @@ var ss = make(Sockets)
 func socket(ws *websocket.Conn) {
 	var err error
 	for {
-		var recive string
+		var recive []byte
+		var data map[string]string
 		if err = websocket.Message.Receive(ws, &recive); err != nil {
 			break
 		}
-		rote := strings.Split(recive, " ")
-		fn, exists := ss[rote[0]]
+		json.Unmarshal(recive, &data)
+		rote, _ := data["path"]
+		fn, exists := ss[rote]
 		if exists {
-			fn.Call([]reflect.Value{reflect.ValueOf(ws), reflect.ValueOf(rote[1:])})
+			fn.Call([]reflect.Value{reflect.ValueOf(ws), reflect.ValueOf(data)})
 		} else {
-			fmt.Println("no socket: ", rote[0])
+			fmt.Println("no socket: ", rote)
 		}
 		if err != nil {
 			break

@@ -15,8 +15,8 @@ func (c *Controllers) PageOs(w http.ResponseWriter, r *http.Request) {
 	Portal(w, "os.tpl", nil)
 }
 
-func (s *Sockets) SocketOs(ws *websocket.Conn, cmd []string) {
-	rst := HandleResult(cmd)
+func (s *Sockets) SocketOs(ws *websocket.Conn, data map[string]string) {
+	rst := HandleResult(data)
 	SocketReplay(ws, rst)
 }
 
@@ -31,13 +31,16 @@ func contain(str string, list []string) bool {
 	return false
 }
 
-//
 //环境变量计算机情报
 //网络信息
 //用户信息
-func HandleResult(cmd []string) map[string]string {
+func HandleResult(data map[string]string) map[string]string {
 	var rtn = make(map[string]string)
-	switch cmd[0] {
+	cmd, has := data["cmd"]
+	if !has {
+		return rtn
+	}
+	switch cmd {
 	case "env":
 		envs := os.Environ()
 		for key, item := range envs {
@@ -84,8 +87,8 @@ func HandleResult(cmd []string) map[string]string {
 		rtn["UserName"] = us.Username
 		rtn["HomeDir"] = us.HomeDir
 	default:
-		if contain(cmd[0], allow) {
-			exec.Command("cmd", "/c", cmd[0]).Run()
+		if contain(cmd, allow) {
+			exec.Command("cmd", "/c", cmd).Run()
 		} else {
 			rtn["tips"] = "Usage: env, detail, net, user"
 		}

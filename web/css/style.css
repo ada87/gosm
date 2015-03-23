@@ -8691,34 +8691,46 @@ button.close {
   padding: 0 24px;
 }
 
-/* line 3, ../css-source/style.scss */
+/* line 8, ../css-source/style.scss */
+html,
 body {
+  height: 100%;
+}
+
+/* line 12, ../css-source/style.scss */
+body {
+  text-align: center;
   font-family: "Microsoft YaHei","STXihei";
 }
 
-/* line 6, ../css-source/style.scss */
+/* line 17, ../css-source/style.scss */
+ul li {
+  list-style: none;
+}
+
+/* line 21, ../css-source/style.scss */
 .fullScreen {
   display: block;
   height: 100%;
   overflow: hidden;
 }
-/* line 10, ../css-source/style.scss */
+/* line 25, ../css-source/style.scss */
 .fullScreen .row {
   height: 100%;
   display: block;
 }
-/* line 13, ../css-source/style.scss */
+/* line 28, ../css-source/style.scss */
 .fullScreen .row div {
   height: 100%;
   display: block;
 }
 
-/* line 19, ../css-source/style.scss */
+/* line 34, ../css-source/style.scss */
 .hide {
   display: none;
 }
 
-/* line 22, ../css-source/style.scss */
+/* line 37, ../css-source/style.scss */
 .x-comand {
   position: fixed;
   bottom: 0px;
@@ -8728,7 +8740,7 @@ body {
   padding-left: 10px;
   padding-top: 5px;
 }
-/* line 30, ../css-source/style.scss */
+/* line 45, ../css-source/style.scss */
 .x-comand button {
   height: 36px;
   line-height: 24px;
@@ -8736,37 +8748,37 @@ body {
   font-weight: bold;
 }
 
-/* line 37, ../css-source/style.scss */
+/* line 52, ../css-source/style.scss */
 .x-comand-min {
   width: 200px;
 }
-/* line 39, ../css-source/style.scss */
+/* line 54, ../css-source/style.scss */
 .x-comand-min .form-group {
   display: block;
 }
-/* line 42, ../css-source/style.scss */
+/* line 57, ../css-source/style.scss */
 .x-comand-min .input-group {
   display: none;
 }
-/* line 45, ../css-source/style.scss */
+/* line 60, ../css-source/style.scss */
 .x-comand-min #x-exec {
   display: none;
 }
 
-/* line 49, ../css-source/style.scss */
+/* line 64, ../css-source/style.scss */
 .x-menu {
   position: fixed;
   top: 10px;
   left: 0px;
 }
 
-/* line 55, ../css-source/style.scss */
+/* line 70, ../css-source/style.scss */
 .x-left ul {
   margin: 0;
   padding-top: 20px;
   text-align: right;
 }
-/* line 59, ../css-source/style.scss */
+/* line 74, ../css-source/style.scss */
 .x-left ul li {
   background-color: #fff;
   border: 1px solid #666;
@@ -8779,7 +8791,7 @@ body {
   text-align: center;
 }
 
-/* line 72, ../css-source/style.scss */
+/* line 87, ../css-source/style.scss */
 .x-right {
   background-color: #000;
   height: 100%;
@@ -8788,17 +8800,17 @@ body {
   overflow-x: hide;
   overflow-y: scroll;
 }
-/* line 79, ../css-source/style.scss */
+/* line 94, ../css-source/style.scss */
 .x-right p {
   padding: 1px;
   margin: 1px;
 }
 
-/* line 84, ../css-source/style.scss */
+/* line 99, ../css-source/style.scss */
 .dropup {
   width: 160px;
 }
-/* line 86, ../css-source/style.scss */
+/* line 101, ../css-source/style.scss */
 .dropup button {
   width: 160px;
 }
@@ -8806,24 +8818,8 @@ body {
 /*
  * Base structure
  */
-/* line 94, ../css-source/style.scss */
-html,
-body {
-  height: 100%;
-}
-
-/* line 98, ../css-source/style.scss */
-body {
-  text-align: center;
-}
-
-/* line 102, ../css-source/style.scss */
-ul li {
-  list-style: none;
-}
-
 /* Extra markup and styles for table-esque vertical and horizontal centering */
-/* line 108, ../css-source/style.scss */
+/* line 111, ../css-source/style.scss */
 .index {
   display: table;
   color: #fff;
@@ -8835,20 +8831,20 @@ ul li {
   min-height: 100%;
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
 }
-/* line 117, ../css-source/style.scss */
+/* line 120, ../css-source/style.scss */
 .index h1 {
   margin: 40px auto;
 }
-/* line 120, ../css-source/style.scss */
+/* line 123, ../css-source/style.scss */
 .index li a {
   color: #fff;
 }
-/* line 122, ../css-source/style.scss */
+/* line 125, ../css-source/style.scss */
 .index li a:hover {
   color: #cccccc;
 }
 
-/* line 129, ../css-source/style.scss */
+/* line 137, ../css-source/style.scss */
 ul.reg9g {
   transition: right 1s;
   margin: 0 auto;
@@ -8856,7 +8852,7 @@ ul.reg9g {
   height: 100%;
   width: 100%;
 }
-/* line 135, ../css-source/style.scss */
+/* line 143, ../css-source/style.scss */
 ul.reg9g .reg3h {
   width: 100%;
   height: 34%;
@@ -8864,7 +8860,7 @@ ul.reg9g .reg3h {
   display: block;
   margin: 0;
 }
-/* line 141, ../css-source/style.scss */
+/* line 149, ../css-source/style.scss */
 ul.reg9g .reg3h ul {
   margin: 0;
   padding: 0;
@@ -8872,93 +8868,93 @@ ul.reg9g .reg3h ul {
   height: 100%;
   overflow: hidden;
 }
-/* line 147, ../css-source/style.scss */
+/* line 155, ../css-source/style.scss */
 ul.reg9g .reg3h ul li {
   width: 33%;
   height: 100%;
   display: block;
   float: left;
 }
-/* line 155, ../css-source/style.scss */
+/* line 163, ../css-source/style.scss */
 ul.reg9g .reg3h .borleft {
   border-left: 1px solid #666;
 }
-/* line 158, ../css-source/style.scss */
+/* line 166, ../css-source/style.scss */
 ul.reg9g .reg3h .bortop {
   border-top: 1px solid #666;
 }
-/* line 162, ../css-source/style.scss */
+/* line 170, ../css-source/style.scss */
 ul.reg9g .reg3h .borright {
   border-right: 1px solid #666;
 }
-/* line 165, ../css-source/style.scss */
+/* line 173, ../css-source/style.scss */
 ul.reg9g .reg3h .borbottom {
   border-bottom: 1px solid #666;
 }
-/* line 168, ../css-source/style.scss */
+/* line 176, ../css-source/style.scss */
 ul.reg9g .reg3h .regb1 {
   background-color: #FF6C52;
 }
-/* line 171, ../css-source/style.scss */
+/* line 179, ../css-source/style.scss */
 ul.reg9g .reg3h .regb2 {
   width: 34%;
   background-color: #F0F598;
 }
-/* line 175, ../css-source/style.scss */
+/* line 183, ../css-source/style.scss */
 ul.reg9g .reg3h .regb3 {
   background-color: #63D6D6;
 }
-/* line 178, ../css-source/style.scss */
+/* line 186, ../css-source/style.scss */
 ul.reg9g .reg3h .regb4 {
   background-color: #41E887;
 }
-/* line 181, ../css-source/style.scss */
+/* line 189, ../css-source/style.scss */
 ul.reg9g .reg3h .regb5 {
   width: 34%;
   background-color: #FCF3E3;
 }
-/* line 185, ../css-source/style.scss */
+/* line 193, ../css-source/style.scss */
 ul.reg9g .reg3h .regb6 {
   background-color: #FA5CFF;
 }
-/* line 188, ../css-source/style.scss */
+/* line 196, ../css-source/style.scss */
 ul.reg9g .reg3h .regb7 {
   background-color: #4BA8DE;
 }
-/* line 191, ../css-source/style.scss */
+/* line 199, ../css-source/style.scss */
 ul.reg9g .reg3h .regb8 {
   width: 34%;
   background-color: #71BF2C;
 }
-/* line 195, ../css-source/style.scss */
+/* line 203, ../css-source/style.scss */
 ul.reg9g .reg3h .regb9 {
   background-color: #B56B2A;
 }
-/* line 201, ../css-source/style.scss */
+/* line 209, ../css-source/style.scss */
 ul.reg9g li.item h2 {
   margin: 0;
   padding: 0;
 }
 
-/* line 207, ../css-source/style.scss */
+/* line 215, ../css-source/style.scss */
 ul.toleft {
   position: absolute;
   right: 100%;
 }
 
-/* line 211, ../css-source/style.scss */
+/* line 219, ../css-source/style.scss */
 .editpanel {
   width: 100%;
   height: 100%;
   background-color: yellow;
 }
 
-/* line 218, ../css-source/style.scss */
+/* line 230, ../css-source/style.scss */
 .crypto {
   box-shadow: inset 0 0 100px rgba(70, 130, 170, 0.2);
   background-color: #E2EFF7;
 }
-/* line 222, ../css-source/style.scss */
+/* line 234, ../css-source/style.scss */
 .crypto .head {
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(70, 130, 170, 0.2);
@@ -8969,46 +8965,46 @@ ul.toleft {
   font-size: 18px;
   border-bottom: 1px solid #355482;
 }
-/* line 233, ../css-source/style.scss */
+/* line 245, ../css-source/style.scss */
 .crypto .input .row {
   margin: 5px 0;
 }
-/* line 235, ../css-source/style.scss */
+/* line 247, ../css-source/style.scss */
 .crypto .input .row .col-xs-6 {
   cursor: pointer;
   padding: 5px 0;
   background-color: #b0cbe7;
   border: 1px solid #547c80;
 }
-/* line 241, ../css-source/style.scss */
+/* line 253, ../css-source/style.scss */
 .crypto .input .row .col-xs-2 {
   cursor: pointer;
   padding: 5px 0;
   background-color: #b0cbe7;
   border: 1px solid #547c80;
 }
-/* line 249, ../css-source/style.scss */
+/* line 261, ../css-source/style.scss */
 .crypto .input .rowtype .selected {
   cursor: auto;
   border: 1px solid #000;
   background-color: #6B4D29;
   color: #ffffff;
 }
-/* line 257, ../css-source/style.scss */
+/* line 269, ../css-source/style.scss */
 .crypto .input .rowmethod .selected {
   cursor: auto;
   border: 1px solid #000;
   background-color: #6B4D29;
   color: #ffffff;
 }
-/* line 265, ../css-source/style.scss */
-.crypto .input #strencode {
+/* line 277, ../css-source/style.scss */
+.crypto .input #strencode, .crypto .input #strkey {
   border: 1px solid #992044;
   margin: 30px auto;
   text-align: center;
   width: 60%;
 }
-/* line 272, ../css-source/style.scss */
+/* line 284, ../css-source/style.scss */
 .crypto .output {
   width: 70%;
   margin: 0 auto;

@@ -1,7 +1,7 @@
-define([],function(){
+define(['jquery'],function($){
 
-	var btn_edit=$('#edit');
-	var btn_done=$('#done');
+	var btn_edit = $('#edit');
+	var btn_done = $('#done');
 
 	function gotoEdit(e){
 		$('.reg9g').addClass('toleft');
