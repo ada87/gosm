@@ -26,7 +26,7 @@ func insertVal(fid, fval, fdes string) error {
 	db, err := sql.Open("sqlite3", "gosm-field")
 	checkErr(err)
 	defer db.Close()
-	stmt, err := db.Prepare("INSERT INTO Field_Value(field_id,field_value,value_desc) VALUES (?,?,?)")
+	stmt, err := db.Prepare("INSERT INTO Field_Value(field_id,field_value,value_desc) VALUES (?,?,?);")
 	checkErr(err)
 	defer stmt.Close()
 	_, rtnerr := stmt.Exec(fid, fval, fdes)
@@ -37,10 +37,11 @@ func updateVal(vid, fval, fdes string) error {
 	db, err := sql.Open("sqlite3", "gosm-field")
 	checkErr(err)
 	defer db.Close()
-	stmt, err := db.Prepare("UPDATE Field_Value SET field_value=? , value_desc = ? WHERE id = ?")
+	stmt, err := db.Prepare("UPDATE Field_Value SET field_value=? , value_desc = ? WHERE id = ?;")
 	checkErr(err)
 	defer stmt.Close()
 	_, rtnerr := stmt.Exec(fval, fdes, vid)
+	checkErr(rtnerr)
 	reflush()
 	return rtnerr
 }
@@ -53,7 +54,7 @@ func reflush() {
 	checkErr(err)
 	defer db.Close()
 
-	stmt, err := db.Prepare("SELECT f.field_id,f.field_code,f.field_desc,v.id,v.field_value,v.value_desc FROM Field AS f LEFT JOIN  Field_Value AS v  ON f.field_id = v.field_id")
+	stmt, err := db.Prepare("SELECT f.field_id,f.field_code,f.field_desc,v.id,v.field_value,v.value_desc FROM Field AS f LEFT JOIN  Field_Value AS v  ON f.field_id = v.field_id ORDER BY v.id ASC ;")
 	checkErr(err)
 	defer stmt.Close()
 

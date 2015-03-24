@@ -26,6 +26,7 @@ func execRegexp(data map[string]string) map[string]string {
 		err := insertVal(fid, fval, fdes)
 		if err != nil {
 			rtn["code"] = "1"
+			rtn["desc"] = "插入数据时出错"
 		}
 	case "update":
 		vid, _ := data["vid"]
@@ -34,6 +35,7 @@ func execRegexp(data map[string]string) map[string]string {
 		err := updateVal(vid, fval, fdes)
 		if err != nil {
 			rtn["code"] = "1"
+			rtn["desc"] = "更新数据时出错"
 		}
 	}
 	return rtn

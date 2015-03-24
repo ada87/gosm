@@ -20,6 +20,7 @@ define([],function(){
 					data[i] = cmd[i];
 				}
 			}
+			console.log(data);
 	    	socket.send(JSON.stringify(data));
 		}else{
 			alert('not vaild');

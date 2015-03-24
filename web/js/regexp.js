@@ -42,7 +42,7 @@ define(['socket'],function(socket){
 	}
 	function update(vid,fval,fdes){
 		var data ={
-			act:"new",
+			act:"update",
 			vid:vid,
 			fval:fval,
 			fdes:fdes
