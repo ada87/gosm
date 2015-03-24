@@ -8584,16 +8584,84 @@ ul.toleft {
   text-align: left;
 }
 /* line 255, ../css-source/style.scss */
+.editpanel ul.nav {
+  margin-bottom: 5px;
+}
+/* line 258, ../css-source/style.scss */
+.editpanel .row {
+  margin: 0 0;
+  padding: 0 0;
+  height: 32px;
+}
+/* line 262, ../css-source/style.scss */
+.editpanel .row div {
+  padding: 5px 0;
+}
+/* line 266, ../css-source/style.scss */
 .editpanel #back {
   margin-right: 20px;
 }
+/* line 269, ../css-source/style.scss */
+.editpanel .tab-pane {
+  text-align: left;
+}
+/* line 271, ../css-source/style.scss */
+.editpanel .tab-pane .attr {
+  border-color: #ccc;
+  border-width: 1px;
+  border-style: solid;
+  padding-left: 10px;
+}
+/* line 276, ../css-source/style.scss */
+.editpanel .tab-pane .attr a {
+  cursor: pointer;
+}
+/* line 279, ../css-source/style.scss */
+.editpanel .tab-pane .attr .btnupdate {
+  display: block;
+}
+/* line 282, ../css-source/style.scss */
+.editpanel .tab-pane .attr .btndone {
+  display: none;
+}
+/* line 287, ../css-source/style.scss */
+.editpanel .tab-pane .onedit .attr {
+  border-color: #8F2168;
+}
+/* line 289, ../css-source/style.scss */
+.editpanel .tab-pane .onedit .attr .btnupdate {
+  display: none;
+}
+/* line 292, ../css-source/style.scss */
+.editpanel .tab-pane .onedit .attr .btndone {
+  display: block;
+}
+/* line 298, ../css-source/style.scss */
+.editpanel .tab-pane .col-xs-4 {
+  border-right: none;
+}
+/* line 304, ../css-source/style.scss */
+.editpanel .tab-pane .col-xs-2 {
+  border-left: none;
+  text-align: center;
+}
+/* line 307, ../css-source/style.scss */
+.editpanel .tab-pane .col-xs-2 .button-tiny {
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+}
+/* line 314, ../css-source/style.scss */
+.editpanel .btnnew {
+  margin-top: 10px;
+}
 
-/* line 265, ../css-source/style.scss */
+/* line 326, ../css-source/style.scss */
 .crypto {
   box-shadow: inset 0 0 100px rgba(70, 130, 170, 0.2);
   background-color: #E2EFF7;
 }
-/* line 269, ../css-source/style.scss */
+/* line 329, ../css-source/style.scss */
 .crypto .head {
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(70, 130, 170, 0.2);
@@ -8604,46 +8672,46 @@ ul.toleft {
   font-size: 18px;
   border-bottom: 1px solid #355482;
 }
-/* line 280, ../css-source/style.scss */
+/* line 340, ../css-source/style.scss */
 .crypto .input .row {
   margin: 5px 0;
 }
-/* line 282, ../css-source/style.scss */
+/* line 342, ../css-source/style.scss */
 .crypto .input .row .col-xs-6 {
   cursor: pointer;
   padding: 5px 0;
   background-color: #b0cbe7;
   border: 1px solid #547c80;
 }
-/* line 288, ../css-source/style.scss */
+/* line 348, ../css-source/style.scss */
 .crypto .input .row .col-xs-2 {
   cursor: pointer;
   padding: 5px 0;
   background-color: #b0cbe7;
   border: 1px solid #547c80;
 }
-/* line 296, ../css-source/style.scss */
+/* line 356, ../css-source/style.scss */
 .crypto .input .rowtype .selected {
   cursor: auto;
   border: 1px solid #000;
   background-color: #6B4D29;
   color: #ffffff;
 }
-/* line 304, ../css-source/style.scss */
+/* line 364, ../css-source/style.scss */
 .crypto .input .rowmethod .selected {
   cursor: auto;
   border: 1px solid #000;
   background-color: #6B4D29;
   color: #ffffff;
 }
-/* line 312, ../css-source/style.scss */
+/* line 372, ../css-source/style.scss */
 .crypto .input #strencode, .crypto .input #strkey {
   border: 1px solid #992044;
   margin: 30px auto;
   text-align: center;
   width: 60%;
 }
-/* line 319, ../css-source/style.scss */
+/* line 379, ../css-source/style.scss */
 .crypto .output {
   width: 70%;
   margin: 0 auto;

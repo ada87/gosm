@@ -5,6 +5,22 @@
 	<p class="check">{{.Value}}</p>
 	{{end}}
 {{end}}
+{{define "regedit"}}
+	{{$fid := .Field_id}}
+	{{range .Values}}
+	<div class="row" fid="{{$fid}}" vid="{{.Id}}">
+		<div class="col-xs-4 attr">{{.Value}}</div>
+		<div class="col-xs-6 attr">{{.Desc}}</div>
+		<div class="col-xs-2 attr">
+			<a class="btnupdate" fid="{{$fid}}">Update</a>
+			<a class="btndone" fid="{{$fid}}">Done</a>
+		</div>
+	</div>
+	{{end}}
+	<button type="button" class="button button-small button-royal btnnew" fid="{{$fid}}">New</button>
+{{end}}
+
+
 <div class="fullScreen">
 <ul class="reg9g">
 	<li class="reg3h">
@@ -38,8 +54,8 @@
 </ul>
 <div class="editpanel container">
 	<nav>
-		<button class="button button-highlight" type="button" id="back">返回</button>
-		<strong>正则库</strong>
+		<button class="button button-highlight" type="button" id="back"><i>&lt;</i>返回</button>
+		<strong>正则资源库</strong>
 	</nav>
   	
 	<div role="tabpanel">
@@ -69,13 +85,13 @@
     </ul>
 
   	<div class="tab-content">
- 		<div role="tabpanel" class="tab-pane fade in active" id="regexp_form">form</div>
-    	<div role="tabpanel" class="tab-pane fade" id="regexp_number">regexp_number</div>
-    	<div role="tabpanel" class="tab-pane fade" id="regexp_custom1">regexp_custom1</div>
-    	<div role="tabpanel" class="tab-pane fade" id="regexp_custom2">regexp_custom2</div>
-    	<div role="tabpanel" class="tab-pane fade" id="regexp_sl">regexp_sl</div>
-    	<div role="tabpanel" class="tab-pane fade" id="regexp_xss">regexp_xss</div>
-    	<div role="tabpanel" class="tab-pane fade" id="regexp_sp">regexp_sp</div>
+ 		<div role="tabpanel" class="tab-pane fade in active" id="regexp_form">{{ template "regedit" .Data.regexp_form}}</div>
+    	<div role="tabpanel" class="tab-pane fade" id="regexp_number">{{ template "regedit" .Data.regexp_number}}</div>
+    	<div role="tabpanel" class="tab-pane fade" id="regexp_custom1">{{ template "regedit" .Data.regexp_custom1}}</div>
+    	<div role="tabpanel" class="tab-pane fade" id="regexp_custom2">{{ template "regedit" .Data.regexp_custom2}}</div>
+    	<div role="tabpanel" class="tab-pane fade" id="regexp_sl">{{ template "regedit" .Data.regexp_sl}}</div>
+    	<div role="tabpanel" class="tab-pane fade" id="regexp_xss">{{ template "regedit" .Data.regexp_xss}}</div>
+    	<div role="tabpanel" class="tab-pane fade" id="regexp_sp">{{ template "regedit" .Data.regexp_sp}}</div>
   	</div>
 	</div>
 </div>
